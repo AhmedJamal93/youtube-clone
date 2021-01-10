@@ -4,7 +4,10 @@ import './Videos.css';
 function Videos() {
     return (
         <div className="videos">
-            <h1>This is for videos</h1>
+            <h2 className="videos__title">Recommended</h2>
+            <div className="videos__videos">
+                
+            </div>
         </div>
     )
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import './Videos.css';
 
-function Videos() {
+function Videos({title}) {
     return (
         <div className="videos">
-            <h2 className="videos__title">Recommended</h2>
+            <h2 className="videos__title">{title}</h2>
             <div className="videos__videos">
                 
             </div>

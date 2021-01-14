@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 import Videos from './components/Videos/Videos';
+import { fetchVideos } from './api/';
 
 // function App() {
 //   return (
@@ -21,10 +22,17 @@ class App extends React.Component{
     super(props)
     this.state = {
       active:0,
-      title:''
+      title:'Home',
+      homeData:[],
     }
   }
   
+  async componentDidMount(){
+    const data = await fetchVideos();
+    this.setState({
+      homeData:data
+    }, () => console.log(this.state.homeData))
+  }
 
   handleSidebarChange = (index, title) => {
     this.setState({
@@ -43,7 +51,8 @@ class App extends React.Component{
             activetab={this.state.active}
           />
           <Videos
-            title={this.state.title} />
+            title={this.state.title}
+            data={this.state.homeData} />
         </div>
       </div>
     )

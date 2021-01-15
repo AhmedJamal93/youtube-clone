@@ -1,8 +1,7 @@
 import React from 'react';
 import './SidebarRow.css';
 
-function SidebarRow({ Icon, title, selected, onClick, index, active }) {
-    console.log({index})
+function SidebarRow({ Icon, title, onClick, index, active }) {
 
     const changeIndex = () => {
         {onClick(index, title)}

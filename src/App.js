@@ -4,18 +4,7 @@ import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 import Videos from './components/Videos/Videos';
 import { fetchVideos } from './api/';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <Header/>
-//       <div className="app__page">
-//         <Sidebar />
-//         <Videos />
-//       </div>
-//     </div>
-//   );
-// }
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 class App extends React.Component{
   constructor(props){
@@ -31,7 +20,7 @@ class App extends React.Component{
     const data = await fetchVideos();
     this.setState({
       homeData:data
-    }, () => console.log(this.state.homeData))
+    })
   }
 
   handleSidebarChange = (index, title) => {
@@ -44,16 +33,28 @@ class App extends React.Component{
   render(){
     return(
       <div className="App">
-        <Header/>
-        <div className="app__page">
-          <Sidebar 
-            handleSidebarChange={this.handleSidebarChange}
-            activetab={this.state.active}
-          />
-          <Videos
-            title={this.state.title}
-            data={this.state.homeData} />
-        </div>
+        <Router>
+          <Header/>
+          <Switch>
+            <Route path="/search">
+              <h1>Search</h1>
+            </Route>
+            <Route path="/">
+              <div className="app__page">
+                <Sidebar 
+                  handleSidebarChange={this.handleSidebarChange}
+                  activetab={this.state.active}
+                />
+                <Videos
+                  title={this.state.title}
+                  data={this.state.homeData} 
+                />
+              </div>
+            </Route>
+          </Switch>
+        </Router>
+        
+        
       </div>
     )
   }
